@@ -13,7 +13,7 @@ class AdminUser < ApplicationRecord
   has_one_attached :image
 
   enum status: ["Active", "Inactive"]
-  enum role: ["Super Admin", "Admin"]
+  enum role: ["admin", "user"]
 
   def image_path
     return Rails.application.routes.url_helpers.rails_blob_path(image, only_path: true) if image.attached?

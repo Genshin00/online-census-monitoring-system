@@ -1,0 +1,38 @@
+<div class="container-fluid bg-white">
+  <div class="container main-page">
+    <form class="form-inline py-2">
+      <div class="form-group d-flex"  style="width: 100%">
+        <input type="password" class="form-control" style="flex: 1" id="inputPassword2" placeholder="Search" >
+        <button type="submit" class="btn btn-primary mx-2" >Search</button>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col-sm-3 bg-white">
+        <div class="shadow">
+          <% if @product.image.attached? %>
+            <%= image_tag @product.image, class: 'w-100', style: "height: 200px !important; object-fit: cover" %>
+          <% else %>
+            <%= image_tag '/images/no-image.png', class: 'w-100', style: "height: 200px !important; object-fit: cover" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-sm-6 px-0 bg-white">
+        <div class="shadow p-3">
+          <h1 class="text-dark h3"><%= @product.name %></h1>
+          <hr>
+          <h1 class="text-dark p mt-4"><%= @product.name %></h1>
+          <h1 class="text-dark h1 mt-4 text-danger"><%= format_currency current_user.user_type == "individual" ? @product.price : @product.wholesale_price %></h1>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="shadow p-3">
+          <a href="#" class="btn btn-lg btn-info text-white text-decoration-none w-100  ">ADD TO CART</a>
+          <a href="#" class="btn btn-lg btn-info text-white text-decoration-none h3 w-100 mt-3">BUY NOW</a>
+        </div>
+      </div>
+    </div>
+    <div class="container mt-5">
+      <h1 class="text-dark h3">Reviews</h1>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,15 @@
 one:
   name: MyString
   description: MyText
+  price: 9.99
+  wholesale_price: 9.99
+  wholesale_minimum_quantity: MyString
+  stocks: 1
 
 two:
   name: MyString
   description: MyText
+  price: 9.99
+  wholesale_price: 9.99
+  wholesale_minimum_quantity: MyString
+  stocks: 1

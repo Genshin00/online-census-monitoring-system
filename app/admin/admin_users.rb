@@ -7,10 +7,12 @@ ActiveAdmin.register AdminUser, as: "Admins" do
     id_column
     column :email
     column :name
-    column :role
-    column :status
-    column :current_sign_in_at
-    column :sign_in_count
+    column :role do |user|
+      status_tag user.role
+    end
+    column :status do |user|
+      status_tag user.status
+    end 
     column :created_at
     actions
   end
@@ -18,9 +20,6 @@ ActiveAdmin.register AdminUser, as: "Admins" do
   # filter :email
   # filter :role, as: :select
   # filter :status, as: :select
-  # filter :current_sign_in_at
-  # filter :sign_in_count
-  # filter :created_at
 
   form do |f|
     f.inputs do
@@ -33,6 +32,17 @@ ActiveAdmin.register AdminUser, as: "Admins" do
       f.input :password_confirmation
     end
     f.actions
+  end
+
+  show do 
+    panel "User Information" do
+      attributes_table_for resource do
+        row :email
+        row :role
+        row :status
+        row :created_at
+      end
+    end
   end
 
 end

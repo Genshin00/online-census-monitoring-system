@@ -34,14 +34,6 @@ Rails.application.routes.draw do
   resources :option_groups do
     end
   resources :variations
-  resources :products do
-        member do
-      post :upload_image
-      post :add_tags
-      delete :delete_tag
-      delete :delete_image
-    end
-  end
   resources :categories
   resources :merchants do
       member do
@@ -60,6 +52,7 @@ Rails.application.routes.draw do
   patch 'profile/update_password'
   devise_for :users
   get 'users/:id' => 'users#show'
+  get 'products/:id' => 'home#products'
   get 'home/index'
   root 'home#index'
 

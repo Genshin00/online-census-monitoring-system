@@ -10,20 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_14_135618) do
-
-  create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
-    t.bigint "bank_id", null: false
-    t.string "account_name"
-    t.string "account_number"
-    t.decimal "amount", precision: 10, scale: 2
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", null: false
-    t.index ["bank_id"], name: "index_accounts_on_bank_id"
-    t.index ["user_id"], name: "index_accounts_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 2021_11_22_113617) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "namespace"
@@ -75,17 +62,9 @@ ActiveRecord::Schema.define(version: 2021_11_14_135618) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "banks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "barangays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
-    t.text "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "transaction_type"
+    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -99,34 +78,45 @@ ActiveRecord::Schema.define(version: 2021_11_14_135618) do
     t.index ["province_id"], name: "index_cities_on_province_id"
   end
 
-  create_table "master_lists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.decimal "share_capital", precision: 10
-    t.decimal "withdrawal", precision: 10
-    t.decimal "balance", precision: 10
-    t.decimal "membership_fee", precision: 10
-    t.decimal "consolidation", precision: 10
-    t.integer "status"
+  create_table "households", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "barangay_id", null: false
+    t.string "sitio"
+    t.string "house_no"
+    t.date "date_of_survey"
+    t.string "informant"
+    t.string "surveyed_by"
+    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_master_lists_on_user_id"
-  end
-
-  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "admin_user_id", null: false
-    t.bigint "user_id", null: false
-    t.text "content"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "sender"
-    t.index ["admin_user_id"], name: "index_messages_on_admin_user_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
+    t.string "house"
+    t.string "lot"
+    t.string "house_type"
+    t.string "material"
+    t.string "electricity"
+    t.string "telecommunication"
+    t.string "toilet_facilities"
+    t.string "refuse_disposal"
+    t.string "fuel"
+    t.string "water_supply"
+    t.string "housing_risk_factor"
+    t.index ["barangay_id"], name: "index_households_on_barangay_id"
   end
 
   create_table "mobile_releases", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "build_code"
     t.integer "update_type"
     t.boolean "maintenance_mode"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.decimal "price", precision: 10
+    t.decimal "wholesale_price", precision: 10
+    t.string "wholesale_minimum_quantity"
+    t.integer "stocks"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -145,19 +135,6 @@ ActiveRecord::Schema.define(version: 2021_11_14_135618) do
     t.string "code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "transactions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "account_id", null: false
-    t.bigint "category_id", null: false
-    t.decimal "amount", precision: 10, scale: 2
-    t.text "note"
-    t.datetime "schedule"
-    t.integer "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["account_id"], name: "index_transactions_on_account_id"
-    t.index ["category_id"], name: "index_transactions_on_category_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -210,31 +187,13 @@ ActiveRecord::Schema.define(version: 2021_11_14_135618) do
     t.string "tin"
     t.string "philhealth"
     t.string "pag_ibig"
+    t.integer "user_type", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "working_files", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "or_no"
-    t.date "or_date"
-    t.bigint "master_list_id", null: false
-    t.integer "particular"
-    t.integer "member"
-    t.decimal "amount", precision: 10, scale: 2
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["master_list_id"], name: "index_working_files_on_master_list_id"
-  end
-
-  add_foreign_key "accounts", "banks"
-  add_foreign_key "accounts", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cities", "provinces"
-  add_foreign_key "master_lists", "users"
-  add_foreign_key "messages", "admin_users"
-  add_foreign_key "messages", "users"
+  add_foreign_key "households", "barangays"
   add_foreign_key "provinces", "regions"
-  add_foreign_key "transactions", "accounts"
-  add_foreign_key "transactions", "categories"
-  add_foreign_key "working_files", "master_lists"
 end

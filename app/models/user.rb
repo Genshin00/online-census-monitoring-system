@@ -23,7 +23,8 @@ class User < ApplicationRecord
   enum role: %w[Player]
   enum status: %w[Active Inactive]
   enum online_status: %w[Offline Online]
-  enum login_type: %w[Email Fa'cebook Google Apple]
+  enum login_type: %w[Email Facebook Google Apple]
+  enum user_type: [:individual, :enterprise]
 
   # validates :confirmation_token, presence: true, uniqueness: { case_sensitive: false }
   # validates :username, presence: true, uniqueness: { case_sensitive: false }
@@ -34,10 +35,6 @@ class User < ApplicationRecord
   validates :middle_name, presence: true
   validates :gender, presence: true
   validates :address, presence: true
-  validates :sss, presence: true
-  validates :tin, presence: true
-  validates :philhealth, presence: true
-  validates :pag_ibig, presence: true
   validates :image, presence: true
 
   def verified?

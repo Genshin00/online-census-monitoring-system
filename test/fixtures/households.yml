@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  barangay: one
+  sitio: MyString
+  house_no: MyString
+  date_of_survey: 2021-11-22
+  informant: MyString
+  surveyed_by: MyString
+  status: 1
+
+two:
+  barangay: two
+  sitio: MyString
+  house_no: MyString
+  date_of_survey: 2021-11-22
+  informant: MyString
+  surveyed_by: MyString
+  status: 1
