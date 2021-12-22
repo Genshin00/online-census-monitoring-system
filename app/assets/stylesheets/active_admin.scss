@@ -80,6 +80,10 @@
   padding: 20px;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .option-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -281,6 +285,11 @@
   }
 }
 
+::marker {
+  display: none !important;
+  list-style-type: none;
+}
+
 .main-page {
   min-height: calc(100vh - 50px);
 }
@@ -304,5 +313,40 @@
     text-indent: none !important;
     text-align: none !important;
     text-align-last: none !important;
+  }
+}
+
+#site_title {
+  display: flex;
+  align-items: center;
+  img {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    margin-right: 12px;
+  }
+}
+
+.active_admin.logged_out.new {
+  background-color: #267326;
+}
+
+#login {
+  h2 {
+    clip: none !important;
+    position: relative !important;
+    font-size: 40px !important;
+    padding-top: 32px !important;
+    text-align: center;
+    line-height: 1;
+    img {
+      margin-top: 12px !important;
+    }
+  }
+  a {
+    display: none;
+  }
+  input[type="submit"] {
+    background-color: #267326 !important ;
   }
 }

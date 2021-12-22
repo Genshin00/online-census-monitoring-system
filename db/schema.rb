@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_22_113617) do
+ActiveRecord::Schema.define(version: 2021_12_22_113622) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "namespace"
@@ -58,8 +58,16 @@ ActiveRecord::Schema.define(version: 2021_11_22_113617) do
     t.string "name"
     t.integer "role", default: 0
     t.integer "status", default: 0
+    t.integer "barangay_id"
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "announcements", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "barangays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -76,6 +84,29 @@ ActiveRecord::Schema.define(version: 2021_11_22_113617) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["province_id"], name: "index_cities_on_province_id"
+  end
+
+  create_table "household_people", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "no"
+    t.string "name"
+    t.string "age"
+    t.string "sex"
+    t.string "nationality"
+    t.string "civil_status"
+    t.string "migrated"
+    t.string "highest_education"
+    t.string "school_attended"
+    t.string "osy"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "household_id"
+    t.string "can_read"
+    t.string "employment"
+    t.string "employment_type"
+    t.string "type_of_work"
+    t.integer "family_income"
+    t.string "dialect"
+    t.string "religion"
   end
 
   create_table "households", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -99,6 +130,9 @@ ActiveRecord::Schema.define(version: 2021_11_22_113617) do
     t.string "fuel"
     t.string "water_supply"
     t.string "housing_risk_factor"
+    t.string "business"
+    t.string "floor_area"
+    t.integer "number_of_employees"
     t.index ["barangay_id"], name: "index_households_on_barangay_id"
   end
 
@@ -192,8 +226,18 @@ ActiveRecord::Schema.define(version: 2021_11_22_113617) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "vehicles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "household_id", null: false
+    t.integer "vehicle_type"
+    t.integer "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["household_id"], name: "index_vehicles_on_household_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cities", "provinces"
   add_foreign_key "households", "barangays"
   add_foreign_key "provinces", "regions"
+  add_foreign_key "vehicles", "households"
 end

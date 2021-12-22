@@ -1,0 +1,122 @@
+<div class="bg-white reports">
+  <div class="container-fluid bg-white  p-5">
+    <h3 class="h3 mb-5"><img src="/images/logo.png" class="logo" alt="logo"/>Online Census Monitoring Records</h3>
+    <hr>
+    <div class="header text-center mt-5">
+      <h1 class="h5">Republic of the Philippines</h1>
+      <h1 class="p">Province of Pangasinan</h1>
+      <h1 class="b">MUNICIPALITY OF CALASIAO</h1>
+      <h1 class="b">Barangay <%= @household.barangay.name %></h1>
+      <h1 class="b">Sitio/Purok: <%= @household.sitio %></h1>
+    </div>
+    <div class="details mt-3">
+      <p class="m-0"><span class="details-label">House number:</span> <%= @household.house_no %></p>
+      <p class="m-0"><span class="details-label">Date of Survey:</span> <%= format_date @household.date_of_survey %></p>
+      <p class="m-0"><span class="details-label">Informant:</span> <%= @household.informant %></p>
+      <p class="m-0"><span class="details-label">Surveyed by:</span> <%= @household.surveyed_by %></p>
+    </div>
+    <div class="table-details mt-3">
+      <table class="">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Sex</th>
+            <th>Nationality</th>
+            <th>Civil Status</th>
+            <th>Migrated from other place</th>
+            <th>Highest Education</th>
+            <th>School Attended</th>
+            <th>OSY</th>
+            <th>Can Read and write</th>
+            <th>Employment</th>
+            <th>Combined Monthly Family Income</th>
+            <th>Major Dialect</th>
+            <th>Religion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @household.household_people.each_with_index do |household_member, index| %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= household_member.name %></td>
+              <td><%= household_member.age %></td>
+              <td><%= household_member.sex %></td>
+              <td><%= household_member.nationality %></td>
+              <td><%= household_member.civil_status %></td>
+              <td><%= household_member.migrated %></td>
+              <td><%= household_member.highest_education %></td>
+              <td><%= household_member.school_attended %></td>
+              <td><%= household_member.osy %></td>
+              <td><%= household_member.can_read %></td>
+              <td><%= "#{household_member.type_of_work} #{household_member.employment}  (#{household_member.employment_type})" %></td>
+              <td><%= format_currency household_member.family_income %></td>
+              <td><%= household_member.dialect %></td>
+              <td><%= household_member.religion %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <br>
+      <div class="details mt-3">
+        <p class="m-0"><span class="details-label">Business at Home:</span> <%= @household.business || "Not available" %></p>
+        <p class="m-0"><span class="details-label">Floor Area (Sq. M.):</span> <%= format_date @household.floor_area || "Not available" %></p>
+        <p class="m-0"><span class="details-label">No. of Employees:</span> <%= @household.number_of_employees || "Not available" %></p>
+      </div>
+      <br>
+      <table>
+        <tbody>
+          <tr>
+            <th colspan="4">Housing</th>
+            <th>Electricity</th>
+            <td><%= @household.electricity %></td>
+          </tr>
+          <tr>
+            <th>House</th>
+            <th>Lot</th>
+            <th>Type</th>
+            <th>Material</th>
+            <th>Telecommunication</th>
+            <td><%= @household.telecommunication %></td>
+          </tr>
+          <tr>
+            <td><%= @household.house&.titleize %></td>
+            <td><%= @household.lot&.titleize %></td>
+            <td><%= @household.house_type&.titleize %></td>
+            <td><%= @household.material&.titleize %></td>
+            <th>Toilet Facilities</th>
+            <td><%= @household.toilet_facilities %></td>
+          </tr>
+          <tr>
+            <th>Housing Risk Factor</th>
+            <td colspan="3"><%= @household.housing_risk_factor %></td>
+            <th>Refuse Disposal</th>
+            <td><%= @household.refuse_disposal %></td>
+          </tr>
+          <tr>
+            <th>Water Supply</th>
+            <td colspan="3"><%= @household.water_supply %></td>
+            <th>Fuel</th>
+            <td><%= @household.fuel %></td>
+          </tr>
+          <tr>
+            <th colspan="6">Vehicles</th>
+          </tr>
+          <tr>
+            <% @household.vehicles.each do |vehicle| %>
+              <th><%= vehicle.vehicle_type %></th>
+            <% end %>
+          </tr>
+          <tr>
+            <% @household.vehicles.each do |vehicle| %>
+              <td><%= vehicle.quantity %></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+    </div>
+    <button onCLick="window.print()" class="btn btn-lg btn-success mt-3" id="print_btn">Print</button>
+  </div>
+</div>

@@ -72,4 +72,18 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector("#active_admin_content").classList.add('login-bg')
     // document.querySelector("h2").firstChild[0].innerHTML = "Laurence"
   }
+
+  const siteTitle = document.querySelector("#site_title")
+  if(siteTitle != null){
+    siteTitle.innerHTML = '<img src="/images/logo.png"/>'
+  }
+
+  const loginHeader = document.querySelector("#login h2")
+  if(loginHeader != null){
+    loginHeader.innerHTML = `
+    <span style="font-size: 24px; font-weight: bold">Online Census Monitoring System</span>
+    <br/>
+    <img src="/images/logo.png" style="width: 150px; height: 150px"/>`
+  }
+
 });

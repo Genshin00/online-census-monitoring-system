@@ -1,12 +1,13 @@
 ActiveAdmin.register AdminUser, as: "Admins" do
-  menu priority: 11
-  permit_params :email, :name, :role, :status, :password, :password_confirmation, :image
+  menu priority: 11, label: 'User list'
+  permit_params :email, :name, :role, :status, :password, :password_confirmation, :image, :barangay_id
 
   index do
     selectable_column
     id_column
     column :email
     column :name
+    column :barangay
     column :role do |user|
       status_tag user.role
     end
@@ -27,6 +28,7 @@ ActiveAdmin.register AdminUser, as: "Admins" do
       f.input :email
       f.input :name
       f.input :role
+      f.input :barangay
       f.input :status
       f.input :password
       f.input :password_confirmation
@@ -39,6 +41,7 @@ ActiveAdmin.register AdminUser, as: "Admins" do
       attributes_table_for resource do
         row :email
         row :role
+        row :barangay
         row :status
         row :created_at
       end

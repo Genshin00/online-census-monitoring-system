@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  'no': MyString
+  name: MyString
+  age: MyString
+  sex: MyString
+  nationality: MyString
+  civil_status: MyString
+  migrated: MyString
+  highest_education: MyString
+  school_attended: MyString
+  osy: MyString
+
+two:
+  'no': MyString
+  name: MyString
+  age: MyString
+  sex: MyString
+  nationality: MyString
+  civil_status: MyString
+  migrated: MyString
+  highest_education: MyString
+  school_attended: MyString
+  osy: MyString

@@ -14,6 +14,7 @@ ActiveAdmin.register Barangay do
   end
 
   show do
+    
     panel "Barangay Details" do
       attributes_table_for resource do
         row :name
@@ -23,6 +24,24 @@ ActiveAdmin.register Barangay do
         row :created_at
         row :updated_at
       end
+    end
+    panel "Household List" do
+      table_for resource.households do
+        column :sitio
+        column :house_no
+        column :date_of_survey
+        column :informant
+        column :surveyed_by
+        column :status do |item|
+          status_tag item.status
+        end
+        column :action do |item|
+          link_to "View details", admin_household_path(item)
+        end
+      end
+    end
+    panel "Comments" do
+      active_admin_comments
     end
   end
 end

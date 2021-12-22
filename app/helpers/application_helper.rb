@@ -10,7 +10,7 @@ module ApplicationHelper
   end
 
   def format_date(date)
-    return date if date.nil?
+    return date if date.blank?
 
     begin
       date.to_date.strftime('%B %e, %Y')

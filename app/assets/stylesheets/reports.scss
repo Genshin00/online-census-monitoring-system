@@ -1,0 +1,72 @@
+// Place all the styles related to the Reports controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.main-body {
+  background-color: white !important;
+}
+
+.reports {
+  width: 100%;
+
+  .wave {
+    width: 100%;
+    height: 30px;
+    transform: rotateX(180deg);
+  }
+
+  .wave-blue {
+    filter: sepia(100%) saturate(300%) brightness(70%) hue-rotate(180deg);
+  }
+
+  .logo {
+    width: 100px;
+    height: 100px;
+    margin-right: 16px;
+  }
+  .details-label {
+    display: inline-block;
+    width: 150px;
+  }
+
+  .table-details {
+    table {
+      width: 100%;
+      thead {
+        tr {
+          th {
+            text-align: left;
+            padding: 4px;
+            border: 1px solid gray;
+          }
+        }
+      }
+      tbody {
+        tr {
+          td,
+          th {
+            text-align: left;
+            padding: 4px;
+            border: 1px solid gray;
+          }
+          th {
+            font-weight: bold;
+            background-color: rgb(242, 242, 242);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media print {
+  @page {
+    size: landscape;
+  }
+  body {
+    zoom: 80%;
+  }
+  #print_btn {
+    display: none;
+  }
+}

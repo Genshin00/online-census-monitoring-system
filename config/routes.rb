@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'reports/certificate_of_appearance'
+  get 'reports/printable_household_form'
   get 'profile' => 'profile#index'
   get 'profile/change_password'
   post 'profile/update_password'
