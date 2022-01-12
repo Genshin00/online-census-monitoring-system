@@ -26,11 +26,11 @@ class HouseholdPerson < ApplicationRecord
   end
 
   def self.employment_types
-    ["Government", "Private"]
+    ["NONE", "Government", "Private"]
   end
 
   def self.type_of_works
-    ["Part Time", "Full Time"]
+    ["NONE", "Part Time", "Full Time"]
   end
 
   def self.dialects

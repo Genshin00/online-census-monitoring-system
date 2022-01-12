@@ -350,3 +350,22 @@
     background-color: #267326 !important ;
   }
 }
+
+.dashboard-report {
+  padding: 12px;
+  background-color: white;
+}
+
+table.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  td,
+  th {
+    border: 1px solid gray;
+    text-align: center;
+    padding: 8px;
+  }
+  th {
+    text-align: left;
+  }
+}

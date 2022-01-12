@@ -1,0 +1,159 @@
+table class: 'report-table' do
+  thead do
+    tbody do
+      tr do
+        th "HOUSING", colspan: 20
+      end
+      tr do
+        th "HOUSE", colspan: 3
+        th "LOT", colspan: 3
+        th "TYPE", colspan: 5
+      end
+      tr do
+        th "Owned"
+        th "Rented"
+        th "Caretaker"
+        th "Owned"
+        th "Rented"
+        th "Caretaker"
+        th "Single"
+        th "Single Duplex"
+        th "Two Storey Duplex"
+        th "Two Storey"
+        th "Others"
+      end
+      tr do
+        td households.where(house: "owned").count
+        td households.where(house: "rented").count
+        td households.where(house: "caretaker").count
+        td households.where(lot: "owned").count
+        td households.where(lot: "rented").count
+        td households.where(lot: "caretaker").count
+        td households.where(house_type: "Single").count
+        td households.where(house_type: "Single, Duplex").count
+        td households.where(house_type: "Two Storey Duplex").count
+        td households.where(house_type: "Two Storey").count
+        td households.where(house_type: "Others").count
+      end
+      tr do
+        th "ELECTRICITY", colspan: 3
+        th "TOILET FACILITY", colspan: 3
+        th "FUEL", colspan: 5
+      end
+      tr do
+        th "Decorp"
+        th "Cenpelco"
+        th "None"
+        th "WS(Water Sealed Closet)"
+        th "AT (Antipolo-type)"
+        th "OP (Open Pit)"
+        th "LPG"
+        th "Wood"
+        th "Electric"
+        th "Charcoal"
+        th "Others"
+      end
+      tr do
+        td households.where(electricity: 'DECORP').count
+        td households.where(electricity: 'CENPELCO').count
+        td households.where(electricity: 'None').count
+        td households.where(toilet_facilities: 'Water Sealed').count
+        td households.where(toilet_facilities: 'Antipolo type').count
+        td households.where(toilet_facilities: 'Open Pit').count
+        td households.where(fuel: 'LPG').count
+        td households.where(fuel: 'Wood').count
+        td households.where(fuel: 'Electric').count
+        td households.where(fuel: 'Charcoal').count
+        td households.where(fuel: 'Others').count
+      end
+      tr do
+        th "WATER SUPPLY", colspan: 6
+      end
+      tr do
+        th "Deep Well", colspan: 2
+        th "Shallow Well", colspan: 2
+        th "Pressure Pump", rowspan: 2
+        th "Individual Connection(Watert District)", rowspan: 2
+      end
+      tr do
+        th "Public"
+        th "Private"
+        th "Public"
+        th "Private"
+      end
+      tr do
+        td households.where(water_supply: 'Public deep well').count
+        td households.where(water_supply: 'Private deep well').count
+        td households.where(water_supply: 'Public shallow well').count
+        td households.where(water_supply: 'Private shallow well').count
+        td households.where(water_supply: 'Pressure pump (Jet Matic)').count
+        td households.where(water_supply: 'Individual Connection (Water District)').count
+      end
+      tr do
+        th "TELECOMMUNICATION", colspan: 7
+      end
+      tr do
+        th "PLDT"
+        th "Digitel"
+        th "Smart"
+        th "Globe"
+        th "Sun"
+        th "Others"
+        th "None"
+      end
+      tr do
+        td households.where(telecommunication: 'PLDT').count
+        td households.where(telecommunication: 'DIGITEL').count
+        td households.where(telecommunication: 'SMART').count
+        td households.where(telecommunication: 'GLOBE').count
+        td households.where(telecommunication: 'SUN').count
+        td households.where(telecommunication: 'OTHERS').count
+        td households.where(telecommunication: 'None').count
+      end
+      tr do
+        th "PERSONAL TRANSPORTATION", colspan: 8
+      end
+      tr do
+        th "Car"
+        th "Wagon/Van"
+        th "Truck/Bus"
+        th "Mini Bus"
+        th "Jeepney"
+        th "Owner Jeep"
+        th "Tricycle"
+        th "Motorcycle"
+        th "Others"
+      end
+      tr do
+        td Vehicle.where(household_id: households.pluck(:id)).where(vehicle_type: 'Car').count
+        td Vehicle.where(household_id: households.pluck(:id)).where(vehicle_type: 'Wagon/Van Pick-up').count
+        td Vehicle.where(household_id: households.pluck(:id)).where(vehicle_type: 'Truck/Bus').count
+        td Vehicle.where(household_id: households.pluck(:id)).where(vehicle_type: 'Mini Bus').count
+        td Vehicle.where(household_id: households.pluck(:id)).where(vehicle_type: 'Jeepney').count
+        td Vehicle.where(household_id: households.pluck(:id)).where(vehicle_type: 'Owner Jeep').count
+        td Vehicle.where(household_id: households.pluck(:id)).where(vehicle_type: 'Tricycle').count
+        td Vehicle.where(household_id: households.pluck(:id)).where(vehicle_type: 'Motorcycle').count
+        td Vehicle.where(household_id: households.pluck(:id)).where(vehicle_type: 'Others').count
+      end
+      tr do
+        th "REFUSE DISPOSAL", colspan: 6
+      end
+      tr do
+        th "Burning"
+        th "Dumping"
+        th "Burying"
+        th "Composting"
+        th "Animal Feeds"
+        th "Garbage Truck Collection"
+      end
+      tr do
+        td households.where(refuse_disposal: 'Burning').count
+        td households.where(refuse_disposal: 'Dumping').count
+        td households.where(refuse_disposal: 'Burying').count
+        td households.where(refuse_disposal: 'Composting').count
+        td households.where(refuse_disposal: 'Animal Feeds').count
+        td households.where(refuse_disposal: 'Garbage Truck Collection').count
+      end
+    end
+  end
+end

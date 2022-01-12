@@ -67,7 +67,7 @@ ActiveAdmin.register Household do
       f.inputs do
         f.input :house, as: :select, include_blank: false, collection: ["owned", "rented", "caretaker"]
         f.input :lot, as: :select, include_blank: false, collection: ["owned", "rented", "caretaker"]
-        f.input :house_type, as: :select, include_blank: false, collection: ["Single", "Single, Duplex", "Two Storey", "Others"]
+        f.input :house_type, as: :select, include_blank: false, collection: ["Single", "Single, Duplex", "Two Storey Duplex", "Two Storey", "Others"]
         f.input :material, as: :select, include_blank: false, collection: ["Concrete", "Wood", "Mixed", "Nipa", "Shanty"]
       end
 
@@ -87,12 +87,12 @@ ActiveAdmin.register Household do
       br
       f.inputs  do
         f.input :electricity, as: :select, include_blank: false, collection: ["DECORP", "CENPELCO", "None"]
-        f.input :telecommunication, as: :select, include_blank: false, collection: ["PLDT", "DIGITAL", "SMART", "GLOBE", "SUN", "OTHERS", "None"]
+        f.input :telecommunication, as: :select, include_blank: false, collection: ["PLDT", "DIGITEL", "SMART", "GLOBE", "SUN", "OTHERS", "None"]
         f.input :toilet_facilities, as: :select, include_blank: false, collection: ["Water Sealed", "Antipolo type", "Open Pit", "None"]
         f.input :refuse_disposal, as: :select, include_blank: false, collection: ["Burning", "Dumping", "Burying", "Composting", "Animal Feeds", "Garbage Truck Collection"]
-        f.input :fuel, as: :datalist, collection: ["LPG", "Wood", "Electric", "Charcoal"], input_html: {placeholder: "Specify if not available in the list"}
+        f.input :fuel, as: :datalist, collection: ["LPG", "Wood", "Electric", "Charcoal", "Others"], input_html: {placeholder: "Specify if not available in the list"}
         f.input :water_supply, as: :select, include_blank: false, collection: ["Private deep well", "Public deep well", "Private shallow well", "Public shallow well", "Pressure pump (Jet Matic)", "Individual Connection (Water District)"]
-        f.input :housing_risk_factor, as: :select, include_blank: false, collection: ["Along PNR", "Along riverbanks", "Along Highway", "Sqatters Area", "Flood Prone Area", "Others"]
+        f.input :housing_risk_factor, as: :select, include_blank: false, collection: ["Along PNR", "Along riverbanks", "Along Highway", "Squatter's  Area", "Flood Prone Area", "Others"]
       end
     else
       f.has_many :household_people,
@@ -186,9 +186,9 @@ ActiveAdmin.register Household do
       end
     end
 
-    panel "Comments" do
-      active_admin_comments
-    end
+    # panel "Comments" do
+    #   active_admin_comments
+    # end
   end
 
   controller do

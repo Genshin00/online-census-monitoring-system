@@ -40,6 +40,11 @@ ActiveAdmin.register Barangay do
         end
       end
     end
+    panel "Reports" do
+      div style: 'padding: 12px' do
+        render 'admin/dashboard/report', households: resource.households
+      end
+    end
     panel "Comments" do
       active_admin_comments
     end
