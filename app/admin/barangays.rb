@@ -45,8 +45,8 @@ ActiveAdmin.register Barangay do
         render 'admin/dashboard/report', households: resource.households
       end
     end
-    panel "Comments" do
-      active_admin_comments
-    end
+    # panel "Comments" do
+    #   active_admin_comments
+    # end
   end
 end
