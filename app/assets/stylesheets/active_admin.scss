@@ -369,3 +369,12 @@ table.report-table {
     text-align: left;
   }
 }
+
+.print-btn {
+  background-color: $primary_color;
+  color: white !important;
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  display: inline-block;
+}

@@ -1,3 +1,4 @@
+a "PRINT", href:"#", class:"print-btn print-hidden", onclick:"window.print()" 
 table class: 'report-table' do
   thead do
     tbody do

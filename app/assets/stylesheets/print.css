@@ -1,0 +1,15 @@
+.site_title img{
+  width: 80px
+}
+
+td, th{
+  border: 1px solid #000;
+}
+
+#page_title{
+  display: none
+}
+
+.print-hidden{
+  display: none
+}
