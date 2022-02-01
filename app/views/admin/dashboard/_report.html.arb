@@ -157,3 +157,184 @@ table class: 'report-table' do
     end
   end
 end
+br
+table class: 'report-table' do
+  thead do
+    tbody do
+      tr do
+        th "Civil Status", colspan: 4, style: 'text-align: center'
+        th "School Attended", colspan: 2, style: 'text-align: center'
+        th "Main Religion", colspan: 11, style: 'text-align: center'
+      end
+      tr do
+        HouseholdPerson.civil_statuses.each do |item|
+          th item
+        end
+        HouseholdPerson.school_attendeds.each do |item|
+          th item
+        end
+        HouseholdPerson.religions.each do |item|
+          th item
+        end
+      end
+      tr do
+        HouseholdPerson.civil_statuses.each do |item|
+          td households.household_people.where(civil_status: item).count
+        end
+        
+        HouseholdPerson.school_attendeds.each do |item|
+          td households.household_people.where(school_attended: item).count
+        end
+        HouseholdPerson.religions.each do |item|
+          td households.household_people.where(religion: item).count
+        end
+      end
+    end
+  end
+end
+
+br
+table class: 'report-table' do
+  thead do
+    tbody do
+      tr do
+        th "Major Dialect", colspan: HouseholdPerson.dialects.count, style: 'text-align: center'
+        th "Highest Education", colspan: HouseholdPerson.highest_educations.count, style: 'text-align: center'
+        th "Can Read and Write?", colspan: HouseholdPerson.can_reads.count, style: 'text-align: center'
+      end
+      tr do
+        HouseholdPerson.dialects.each do |item|
+          th item
+        end
+        HouseholdPerson.highest_educations.each do |item|
+          th item
+        end
+        HouseholdPerson.can_reads.each do |item|
+          th item
+        end
+      end
+      tr do
+        HouseholdPerson.dialects.each do |item|
+          td households.household_people.where(dialect: item).count
+        end
+        HouseholdPerson.highest_educations.each do |item|
+          td households.household_people.where(highest_education: item).count
+        end
+        HouseholdPerson.can_reads.each do |item|
+          td households.household_people.where(can_read: item).count
+        end
+      end
+    end
+  end
+end
+
+
+br
+table class: 'report-table' do
+  thead do
+    tbody do
+      tr do
+        th "Employment Type", colspan: HouseholdPerson.employment_types.count, style: 'text-align: center'
+        th "Employment", colspan: HouseholdPerson.type_of_works.count, style: 'text-align: center'
+      end
+      tr do
+     
+        HouseholdPerson.employment_types.each do |item|
+          th item
+        end
+        HouseholdPerson.type_of_works.each do |item|
+          th item
+        end
+      end
+      tr do
+       
+        HouseholdPerson.employment_types.each do |item|
+          td households.household_people.where(employment_type: item).count
+        end
+        HouseholdPerson.type_of_works.each do |item|
+          td households.household_people.where(type_of_work: item).count
+        end
+      end
+    end
+  end
+end
+
+
+br
+table class: 'report-table' do
+  thead do
+    tbody do
+      tr do
+        th "Major Dialect", colspan: HouseholdPerson.dialects.count, style: 'text-align: center'
+        th "Highest Education", colspan: HouseholdPerson.highest_educations.count, style: 'text-align: center'
+        th "Can Read and Write?", colspan: HouseholdPerson.can_reads.count, style: 'text-align: center'
+      end
+      tr do
+        HouseholdPerson.dialects.each do |item|
+          th item
+        end
+        HouseholdPerson.highest_educations.each do |item|
+          th item
+        end
+        HouseholdPerson.can_reads.each do |item|
+          th item
+        end
+      end
+      tr do
+        HouseholdPerson.dialects.each do |item|
+          td households.household_people.where(dialect: item).count
+        end
+        HouseholdPerson.highest_educations.each do |item|
+          td households.household_people.where(highest_education: item).count
+        end
+        HouseholdPerson.can_reads.each do |item|
+          td households.household_people.where(can_read: item).count
+        end
+      end
+    end
+  end
+end
+
+
+br
+table class: 'report-table', style: 'width: 50%' do
+  thead do
+    tbody do
+      tr do
+        th "Age Group", rowspan: 2, style: 'text-align: center'
+        th "Population", rowspan: 2, style: 'text-align: center'
+        th "Sex", colspan: 2, style: 'text-align: center'
+      end
+      tr do
+        th "Male", style: 'text-align: center'
+        th "Female", style: 'text-align: center'
+      end
+      tr do
+        th "UNDER 1"
+        td households.household_people.where(age: 0..1).count
+        td households.household_people.where(age: 0..1).where(sex: 'Male').count
+        td households.household_people.where(age: 0..1).where(sex: 'Female').count
+      end
+      tr do
+        th "1 to 4"
+        td households.household_people.where(age: 1..4).count
+        td households.household_people.where(age: 1..4).where(sex: 'Male').count
+        td households.household_people.where(age: 1..4).where(sex: 'Female').count
+      end
+      (1..15).each do |i|
+        tr do
+          th "#{i * 5} to #{i * 5 + 4}"
+          td households.household_people.where(age: (i * 5)..(i * 5 + 4)).count
+          td households.household_people.where(age: (i * 5)..(i * 5 + 4)).where(sex: 'Male').count
+          td households.household_people.where(age: (i * 5)..(i * 5 + 4)).where(sex: 'Female').count
+        end
+      end
+      tr do
+        th "80 and over"
+        td households.household_people.where(age: 80..200).count
+        td households.household_people.where(age: 80..200).where(sex: 'Male').count
+        td households.household_people.where(age: 80..200).where(sex: 'Female').count
+      end
+    end
+  end
+end

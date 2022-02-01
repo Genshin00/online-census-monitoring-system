@@ -16,4 +16,7 @@ class Household < ApplicationRecord
     house_no
   end
 
+  def self.household_people
+    HouseholdPerson.all.where(household_id: self.ids)
+  end
 end
